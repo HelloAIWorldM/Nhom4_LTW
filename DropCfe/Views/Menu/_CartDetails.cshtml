@@ -1,0 +1,47 @@
+﻿@using DropCfe.Models;
+@{ 
+    GioHang gh = Session["giohang"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        Session["giohang"] = gh;
+    }
+}
+<div id="cartItemsContainer">
+    @foreach (ctDonHang i in gh.ChonSP.Values)
+    {
+        <div class="item-display">
+            <div class="cart-item">
+                <img src="@Url.Content(DungChung.getImageproducts(i.maSP))" />
+                <div>
+                    <h3>
+                        <span class="span-primary">@DungChung.getNameproducts(i.maSP)</span>
+                    </h3>
+                    <h4>@i.giaBan vnd</h4>
+                    @using (Html.BeginForm("XoaItem", "Menu", FormMethod.Post))
+                    {
+                        <input type="hidden" name="maSP" value="@i.maSP" />
+                        <button type="button" class="remove-item remove-item-btn">Remove</button>
+                    }
+
+                </div>
+                <div>
+                    @using (Html.BeginForm("TangSoLuong", "Menu", FormMethod.Post))
+                    {
+                        <input type="hidden" name="maSP" value="@i.maSP" />
+                        <button type="button"><i class="fas fa-chevron-up"></i></button>
+                    }
+
+                    <p class="">@i.soLuong</p>
+                    @using (Html.BeginForm("GiamSoLuong", "Menu", FormMethod.Post))
+                    {
+                        <input type="hidden" name="maSP" value="@i.maSP" />
+                        <button type="button"><i class="fas fa-chevron-down"></i></button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+    

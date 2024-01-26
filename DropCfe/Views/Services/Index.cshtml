@@ -1,0 +1,79 @@
+﻿@using DropCfe.Models
+@{
+    ViewBag.Title = "Index";
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+<main>
+    <section class="services">
+        <div class="pic-area">
+            <div class="pic-area-text">
+                <h2>Nhìn chúng tôi xem</h2>
+                <h1 class="home__name">
+                    Công thức pha tuyệt vời!
+                </h1>
+                <h3>Nhà của bạn ngay ở đây.</h3>
+                <!-- <button class="btn-order">Order Now!</button> -->
+            </div>
+        </div>
+        <div class="main-area">
+            <div class="section-area">
+                <div class="section-A">
+                    <div class="box-text">
+                        <h1>Cách pha cà phê phin ngon</h1>
+                        <p>
+                            Bước 1: Tráng phin pha cafe qua nước sôi và để khô ráo.<br />
+                            Bước 2: Đặt phin lên cốc và cho 25 gram bột cà phê vào phin<br />
+                            Bước 3: Rót chầm chậm tay khoảng 30ml nước sôi phủ hết bề mặt bột cafe<br />
+                            Bước 4: Chờ đợi trong khoảng 3 phút cho bột cafe hút hết nước và nở đều, bạn nén nắp gài lại rồi tiếp tục cho 50ml nước sôi còn lại và đậy nắp chờ.<br />
+                            Bước 5: Sau khoảng 1 phút, giọt cà phê đầu sẽ bắt đầu chảy ra. Bạn chờ đến khi cafe nhỏ gần hết thì ấn nắp gài để chiếc xuất hết phần còn lại. Vậy là bạn đã có được một ly cà phê phin ngon lành để nhâm nhi.
+                        </p>
+                    </div>
+                    <div class="box-img">
+                        <img src="~/Assets/img/entertainment.jpg" alt="Entertainment" />
+                    </div>
+                </div>
+            </div>
+            <div class="section-area">
+                <div class="section-B">
+                    <div class="box-text">
+                        <h1>Cách pha cà phê máy ngon</h1>
+                        <p>
+                            Bước 1: Khởi động máy pha cà phê trước 20 – 30 phút để máy sẵn sàng đạt đến điều kiện thích hợp.<br />
+                            Bước 2: Cho 7-9 gam bột cà phê đã được xay vào tay cầm. Sau đó dùng lực vừa đủ nén cho đều.<br />
+                            Bước 3: Làm sạch họng pha bằng cách xả nước nóng trong máy ra liên tục 3 – 5s rồi lắp tay cầm vào.<br />
+                            Bước 4: Đặt tách dưới họng máy pha, bật nút và bắt đầu quá trình chiết xuất Espresso ra ly.<br />
+                            Lưu ý từ khi bắt đầu lắp tay cầm vào máy cho đến khi ra giọt cà phê đầu tiên cần theo thời gian chuẩn yêu cầu là 5 – 8s. Một shot cà phê Espresso chuẩn có thời gian chảy từ 25 – 30s với lưu lượng là 30 – 35ml.
+                        </p>
+                    </div>
+                    <div class="box-img">
+                        <img src="~/Assets/img/parking.jpg" alt="Parking" />
+                    </div>
+                </div>
+            </div>
+            <div class="section-area">
+                <div class="section-C">
+                    <div class="box-text">
+                        <h1>Cách pha cà phê sữa đá ngon</h1>
+                        <p>
+                            Bước 1: Pha cà phê phin như đã hướng dẫn ở trên<br />
+                            Bước 2: Dùng ca đong để lấy 50 ml cà phê đã pha cho vào bình lắc, sau đó dùng cây đánh bọt đánh đến khi nổi bọt mịn<br />
+                            Bước 3: Cho 40ml sữa đặc vào ly, sau đó cho đá vào nếu bạn muốn.<br />
+                            Bước 4: Đổ nhẹ hết phần cà phê loãng và cả phần bọt vào ly. Vậy là bạn đã có một ly cà phê sữa đá.<br />
+
+                        </p>
+                    </div>
+                    <div class="box-img">
+                        <img src="~/Assets/img/venue.jpg" alt="Venue" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

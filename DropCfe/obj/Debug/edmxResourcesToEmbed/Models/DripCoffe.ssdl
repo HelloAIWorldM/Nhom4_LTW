@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DripCofe1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ctDonHang">
+    <Key>
+      <PropertyRef Name="soDH" />
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="soDH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="soLuong" Type="int" />
+    <Property Name="giaBan" Type="bigint" />
+  </EntityType>
+  <EntityType Name="donHang">
+    <Key>
+      <PropertyRef Name="soDH" />
+    </Key>
+    <Property Name="soDH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="maKH" Type="int" Nullable="false" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ngayDat" Type="datetime" />
+    <Property Name="ngayGH" Type="datetime" />
+    <Property Name="diaChiGH" Type="nvarchar" MaxLength="250" />
+    <Property Name="ghiChu" Type="ntext" />
+    <Property Name="trangthai" Type="int" />
+  </EntityType>
+  <EntityType Name="khachhang">
+    <Key>
+      <PropertyRef Name="maKH" />
+    </Key>
+    <Property Name="maKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="soDT" Type="varchar" MaxLength="10" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="loaiSP">
+    <Key>
+      <PropertyRef Name="maLoai" />
+    </Key>
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="loaiHang" Type="nvarchar" MaxLength="88" Nullable="false" />
+    <Property Name="ghiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="sanPham">
+    <Key>
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="hinhSP" Type="varchar(max)" Nullable="false" />
+    <Property Name="giaBan" Type="int" Nullable="false" />
+    <Property Name="calories" Type="nvarchar(max)" />
+    <Property Name="fat" Type="nvarchar" MaxLength="50" />
+    <Property Name="Total" Type="varchar" MaxLength="10" />
+    <Property Name="percentFat" Type="varchar" MaxLength="10" />
+    <Property Name="Saturated" Type="varchar" MaxLength="10" />
+    <Property Name="percentSaturated" Type="varchar" MaxLength="10" />
+    <Property Name="Cholesterol" Type="varchar" MaxLength="10" />
+    <Property Name="percentCholesterol" Type="varchar" MaxLength="10" />
+    <Property Name="Sodium" Type="varchar" MaxLength="10" />
+    <Property Name="percentSodium" Type="varchar" MaxLength="10" />
+    <Property Name="Carbohydrates" Type="varchar" MaxLength="10" />
+    <Property Name="percentCarbohydrates" Type="varchar" MaxLength="10" />
+    <Property Name="Sugars" Type="varchar" MaxLength="10" />
+    <Property Name="Protein" Type="varchar" MaxLength="10" />
+    <Property Name="Caffeine" Type="varchar" MaxLength="10" />
+    <Property Name="percentCaffeine" Type="varchar" MaxLength="10" />
+    <Property Name="thanhPhan" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="percentProtein" Type="varchar" MaxLength="10" />
+    <Property Name="ndTomTat" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="taiKhoanTV">
+    <Key>
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="matKhau" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__sanPham__maLoai__47DBAE45">
+    <End Role="loaiSP" Type="Self.loaiSP" Multiplicity="1" />
+    <End Role="sanPham" Type="Self.sanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaiSP">
+        <PropertyRef Name="maLoai" />
+      </Principal>
+      <Dependent Role="sanPham">
+        <PropertyRef Name="maLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctDonHang_donHang">
+    <End Role="donHang" Type="Self.donHang" Multiplicity="1" />
+    <End Role="ctDonHang" Type="Self.ctDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="donHang">
+        <PropertyRef Name="soDH" />
+      </Principal>
+      <Dependent Role="ctDonHang">
+        <PropertyRef Name="soDH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctDonHang_sanPham">
+    <End Role="sanPham" Type="Self.sanPham" Multiplicity="1" />
+    <End Role="ctDonHang" Type="Self.ctDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanPham">
+        <PropertyRef Name="maSP" />
+      </Principal>
+      <Dependent Role="ctDonHang">
+        <PropertyRef Name="maSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_donHang_khachhang">
+    <End Role="khachhang" Type="Self.khachhang" Multiplicity="1" />
+    <End Role="donHang" Type="Self.donHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khachhang">
+        <PropertyRef Name="maKH" />
+      </Principal>
+      <Dependent Role="donHang">
+        <PropertyRef Name="maKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_donHang_taiKhoanTV">
+    <End Role="taiKhoanTV" Type="Self.taiKhoanTV" Multiplicity="1" />
+    <End Role="donHang" Type="Self.donHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taiKhoanTV">
+        <PropertyRef Name="taiKhoan" />
+      </Principal>
+      <Dependent Role="donHang">
+        <PropertyRef Name="taiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DripCofe1ModelStoreContainer">
+    <EntitySet Name="ctDonHang" EntityType="Self.ctDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="donHang" EntityType="Self.donHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="khachhang" EntityType="Self.khachhang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="loaiSP" EntityType="Self.loaiSP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sanPham" EntityType="Self.sanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="taiKhoanTV" EntityType="Self.taiKhoanTV" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__sanPham__maLoai__47DBAE45" Association="Self.FK__sanPham__maLoai__47DBAE45">
+      <End Role="loaiSP" EntitySet="loaiSP" />
+      <End Role="sanPham" EntitySet="sanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctDonHang_donHang" Association="Self.FK_ctDonHang_donHang">
+      <End Role="donHang" EntitySet="donHang" />
+      <End Role="ctDonHang" EntitySet="ctDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctDonHang_sanPham" Association="Self.FK_ctDonHang_sanPham">
+      <End Role="sanPham" EntitySet="sanPham" />
+      <End Role="ctDonHang" EntitySet="ctDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_donHang_khachhang" Association="Self.FK_donHang_khachhang">
+      <End Role="khachhang" EntitySet="khachhang" />
+      <End Role="donHang" EntitySet="donHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_donHang_taiKhoanTV" Association="Self.FK_donHang_taiKhoanTV">
+      <End Role="taiKhoanTV" EntitySet="taiKhoanTV" />
+      <End Role="donHang" EntitySet="donHang" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

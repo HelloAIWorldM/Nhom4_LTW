@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="caea3bfc2197481ebfe98e9ea43472fd" Name="Diagram1">
+        <EntityTypeShape EntityType="DripCofeModel.AdminAccount" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DripCofeModel.ctDonHang" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DripCofeModel.donHang" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DripCofeModel.khachhang" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DripCofeModel.loaiSP" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DripCofeModel.sanPham" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DripCofeModel.taiKhoanTV" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="DripCofeModel.FK_ctDonHang_donHang" ManuallyRouted="false" />
+        <AssociationConnector Association="DripCofeModel.FK_ctDonHang_sanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DripCofeModel.FK_donHang_khachhang" ManuallyRouted="false" />
+        <AssociationConnector Association="DripCofeModel.FK_donHang_taiKhoanTV" ManuallyRouted="false" />
+        <AssociationConnector Association="DripCofeModel.FK__sanPham__maLoai__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

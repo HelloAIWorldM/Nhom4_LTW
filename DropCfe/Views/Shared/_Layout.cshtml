@@ -1,0 +1,247 @@
+﻿@using DropCfe.Models
+@{  
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drip Cafe - Home</title>
+    <link href="~/Assets/css/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Marck+Script&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <link rel="icon" href="~/Assets/img/favicon.png" />
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+    <style>
+        button{
+            background:none;
+            border:none;
+        }
+        header .cart-item .remove-item-btn {
+            color: grey;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+        }
+            header .cart-item .remove-item-btn:hover {
+                color: #e0e0e0;
+            }
+        #itemCart  {
+            border: none;
+            background: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="second-header">
+            <div class="menu-btn">
+                <span class="menu-btn__burger"></span>
+            </div>
+            <nav class="nav">
+                <ul class="menu-nav">
+                    <li class="menu-nav__item">
+                        <a href="@Url.Action("Index", "Home", new { @area = "" })" class="logo menu-nav__link">
+                            <img src="~/Assets/img/favicon.png" />
+                            <span class="logo-first">Drip</span>
+                            <span class="logo-last">Cafe</span>
+                        </a>
+                    </li>
+                    @if (Session["user"] != null)
+                    {
+                        <li class="menu-nav__item">
+                            <a href="@Url.Action("Index", "SignIn", new { @area = "" })" class="sign-in menu-nav__link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                @Session["user"]
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="menu-nav__item">
+                            <a href="@Url.Action("Index", "SignIn", new { @area = "" })" class="sign-in menu-nav__link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                Sign In
+                            </a>
+                            <span class="menu-nav__link" id="slash">/</span>
+                            <a href="@Url.Action("Index", "SignUp", new { @area = "" })" class="sign-up menu-nav__link">
+                                Sign Up
+                            </a>
+                        </li>
+                    }
+
+                    <br />
+                    <li class="menu-nav__item ">
+                        @Html.ActionLink("Nhà cung cấp", "Index", "Home", new { @are = "" }, new { @class = "menu-nav__link" })
+                    </li>
+                    <li class="menu-nav__item">
+                        @Html.ActionLink("Menu", "Index", "Menu", new { @are = "" }, new { @class = "menu-nav__link" })
+
+                    </li>
+                    <li class="menu-nav__item">
+                        @Html.ActionLink("Nhập Kho", "Index", "NhapKho", new { @are = "" }, new { @class = "menu-nav__link" })
+                    </li>
+                    <li class="menu-nav__item">
+                        @Html.ActionLink("Pha chế", "Index", "Services", new { @are = "" }, new { @class = "menu-nav__link" })
+                    </li>
+                    <li class="menu-nav__item">
+                        @Html.ActionLink("Kho", "Index", "Kho", new { @are = "" }, new { @class = "menu-nav__link" })
+                    </li>
+                    <li class="menu-nav__item">
+                        <a href="#!" class="menu-nav__link cart__openBtn">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                            @if (x != null)
+                            {
+                                <input id="itemCart" class="badge badge-primary" value="@gh.tongSLSP()" style="width:45px">
+                            }
+                            </input>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Shopping Cart -->
+        <div class="cart-overlay">
+            <div class="cart">
+                <div class="cart__closeBtn">
+                    <i class="fas fa-window-close"></i>
+                </div>
+                <h2>
+                    <i class="fa fa-cart-arrow-down"></i>
+                    <span class="span-primary">Shopping</span> Cart
+                    <i class="fa fa-cart-arrow-down"></i>
+                </h2>
+                <div id="itemCart">
+                    @{
+                        if (gh.tongSLSP() <= 0)
+                        {
+                            <span>
+                                <br>
+                                <br>
+                                Giỏ hàng của bạn đang trống. <br />
+                                Thêm hàng vào giỏ hàng bằng cách rê chuột/chạm vào hình ảnh sản phẩm
+                                trên trang Menu
+                            </span>
+                        }
+                        else
+                        {
+                            foreach (ctDonHang i in gh.ChonSP.Values)
+                            {
+                                <div class="item-display">
+                                    <div class="cart-item">
+                                        <img src="@Url.Content(DungChung.getImageproducts(i.maSP))" />
+                                        <div>
+                                            <h3>
+                                                <span class="span-primary">@DungChung.getNameproducts(i.maSP)</span>
+                                            </h3>
+                                            <h4>@i.giaBan vnd</h4>
+                                            @using (Html.BeginForm("XoaItem", "Menu", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maSP" value="@i.maSP" />
+                                                <button type="submit" class="remove-item remove-item-btn">Remove</button>
+                                            }
+
+                                        </div>
+                                        <div>
+                                            @using (Html.BeginForm("TangSoLuong", "Menu", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maSP" value="@i.maSP" />
+                                                <button type="submit"><i class="fas fa-chevron-up"></i></button>
+                                            }
+
+                                            <p class="">@i.soLuong</p>
+                                            @using (Html.BeginForm("GiamSoLuong", "Menu", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maSP" value="@i.maSP" />
+                                                <button type="submit"><i class="fas fa-chevron-down"></i></button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="totall">Thành tiền: @gh.tongtienGH() vnd</div>
+                    }
+                </div>
+
+
+                <div class="total"></div>
+
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        @RenderBody()
+        <ul class="list-footer">
+            <span class="logo-first">Drip</span>
+            <span class="logo-last">Cafe</span>
+            <li><a href="">Liên Hệ</a></li>
+            <li><a href="">Địa chỉ cửa hàng : 300A, QL1A, An Phú Đông, Q12</a></li>
+        </ul>
+        <div class="icons">
+            <a href="#!">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#!">
+                <i class="fab fa-snapchat-square"></i>
+            </a>
+        </div>
+        <div class="copyright">&copy; ĐẠI HỌC NGUYỄN TẤT THÀNH</div>
+    </footer>
+    <script src="~/Assets/js/script.js"></script>
+
+    <script src="https://kit.fontawesome.com/c057664144.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!--
+        <script>
+        $(document).ready(function () {
+            $(".addToCart").click(function () {
+                var form = $(this).closest("form");
+                $.ajax({
+                    type: form.attr("method"),
+                    url: form.attr("action"),
+                    data: form.serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+                            console.log("AJAX success:", response);
+                            $("#itemCart").val(response.itemCart);
+                            $("#cartItemsContainer").html(response.cartHtml);
+                        } else {
+                            console.error("Error adding item:", response.message);
+                            alert("Error adding item");
+                        }
+                    },
+                    error: function () {
+                        alert("đã xảy ra lỗi");
+                    },
+                    complete: function () {
+                        //event.preventDefault();
+                    },
+                });
+            });
+        });
+    </script>
+    -->
+
+</body>
+</html>

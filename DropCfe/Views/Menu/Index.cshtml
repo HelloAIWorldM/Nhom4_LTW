@@ -1,0 +1,138 @@
+﻿@using DropCfe.Models;
+@{
+    ViewBag.Title = "Index";
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+<style>
+</style>
+<header>
+    @{
+        int viewCounter = 0;
+        string[] counterWords = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" };
+        int buttonCounter = 0;
+    }
+    @foreach (sanPham i in DungChung.getProducts())
+    {
+        <div class="@($"{counterWords[viewCounter]}__view-overlay")">
+            <div class="@($"{counterWords[viewCounter]}__view")">
+                <div class="@($"{counterWords[viewCounter]}__view__closeBtn")">
+                    <i class="fas fa-window-close"></i>
+                </div>
+                <div class="@($"{counterWords[viewCounter]}__view-content")">
+                    <h2>
+                        <i class="fas fa-mug-hot"></i>
+                        <span class="span-primary">@i.tenSP</span>
+                        <i class="fas fa-mug-hot"></i>
+                    </h2>
+                    <div class="description">
+                        @i.ndTomTat
+                    </div>
+                    <img src="@Url.Content(i.hinhSP)" alt="Caffè Misto" />
+                    <div class="nutritional_info">
+                        <h2><span class="span-primary">Nutritional</span> Information</h2>
+                        <div class="bar-large">Serving Size 16 fl oz</div>
+                        <div class="bar-medium">
+                            <b>Calories</b> @i.calories
+                            <span class="span-right">Calories from Fat @i.fat</span>
+                        </div>
+                        <div class="bar-small">
+                            <div class="span-align-right">% Daily Value *</div>
+                        </div>
+                        <div class="bar-small">
+                            <b>Total Fat</b> @i.Total g <span class="span-right">@i.percentFat%</span>
+                        </div>
+                        <div class="bar-small">
+                            <div class="indent">
+                                Saturated Fat @i.Saturated g <span class="span-right">@i.percentSaturated%</span>
+                            </div>
+                        </div>
+                        <div class="bar-small">
+                            <div class="indent">Trans Fat 0 g</div>
+                        </div>
+                        <div class="bar-small">
+                            <b>Cholesterol</b> @i.Cholesterol mg <span class="span-right">@i.percentCholesterol%</span>
+                        </div>
+                        <div class="bar-small">
+                            <b>Sodium</b> @i.Sodium mg <span class="span-right">@i.percentSodium%</span>
+                        </div>
+                        <div class="bar-small">
+                            <b>Total Carbohydrates</b> @i.Carbohydrates g
+                            <span class="span-right">@i.percentCarbohydrates%</span>
+                        </div>
+                        <div class="bar-small">
+                            <div class="indent">Dietary Fiber 0 g</div>
+                        </div>
+                        <div class="bar-small">
+                            <div class="indent">Sugars @i.Sugars g</div>
+                        </div>
+                        <div class="bar-small">
+                            <b>Protein</b> @i.Protein g <span class="span-right">@i.percentProtein%</span>
+                        </div>
+                        <div class="bar-small"><b>Caffeine</b> @i.Caffeine mg</div>
+                        * 2,000 calories a day is used for general nutrition advice, but
+                        calorie needs vary.
+                    </div>
+
+                    <div class="ingredients">
+                        <h2>Thành phần</h2>
+                        @i.thanhPhan
+                    </div>
+
+                    <div class="allergens">
+                        <h2>Chất gây dị ứng</h2>
+                        Không có sẵn cho mặt hàng này
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        viewCounter = (viewCounter + 1) % 12;
+    }
+
+</header>
+<main>
+    <section class="menu">
+        <div class="pic-area">
+            <div class="pic-area-text">
+                <h2>Giảm giá có hạn:</h2>
+                <h1>Giảm 20% các loại nước size lớn!</h1>
+                <h3>Bigsize (16 fl oz)</h3>
+            </div>
+        </div>
+            <div class="flex">
+                @foreach (sanPham a in DungChung.getProducts())
+                {
+                    <div class="box">
+                        <div class="img-container">
+                            <img src="@Url.Content(a.hinhSP)" alt="" />
+                            <div class="box__btns">
+                                <a href="#!" class="box__btn @($"{counterWords[buttonCounter]}__view__openBtn")">
+                                    View
+                                </a>
+                                <div>
+                                    @using (Html.BeginForm("themSP", "Menu", FormMethod.Post, new { @id= "addToCartForm" }))
+                                    {
+                                        <input type="hidden" name="maSP" value="@a.maSP" />
+                                        <button type="submit" class="box__btn cart__button addToCart">Thêm giỏ hàng</button>
+                                    }
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <h2>@a.tenSP</h2>
+                        <h3>@a.giaBan vnd</h3>
+                    </div>
+
+                    buttonCounter = (buttonCounter + 1) % 12;
+                }
+        </div>
+    </section>
+</main>
+<script src="~/Assets/js/script.js"></script>
+<script src="https://kit.fontawesome.com/c057664144.js" crossorigin="anonymous"></script>

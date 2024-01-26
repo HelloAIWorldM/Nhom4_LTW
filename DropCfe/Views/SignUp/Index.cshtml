@@ -1,0 +1,90 @@
+﻿@model DropCfe.Models.taiKhoanTV
+@using DropCfe.Models
+@{
+    ViewBag.Title = "Index";
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+<main>
+    <section class="sign-up">
+        <div class="pic-area">
+            <div class="pic-area-text">
+                <div id="login-box">
+                    @using (Html.BeginForm("Index", "SignUp", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                    <form id="login-form"
+                          name="login-form"
+                          action="index.html"
+                          method="post">
+                        <label>Email: </label> <br />
+                        @*
+        <input type="email"
+           name="email"
+           id="emailid"
+           pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+           required />
+                        *@
+
+                        @Html.TextBoxFor(a => a.email, new { @class = "form-control", @placeholder = "Email" })
+                        <br />
+                        <label>Tên đăng nhập: </label> <br />
+
+                        @*
+        <input type="text"
+           name="userid"
+           id="userid"
+           pattern="[a-zA-Z0-9]+"
+           required />
+                        *@
+                        @Html.TextBoxFor(a => a.taiKhoan, new { @class = "form-control", @placeholder = "Tài khoản" })
+                        <!-- minlength="10" does not work probably bc you need to use the submit button--><br />
+                        <label>Mật khẩu: </label> <br />
+                        @*
+        <input type="password" name="pswrd" id="pswrd" /><br />
+                        *@
+
+                        @Html.TextBoxFor(a => a.matKhau, new { @class = "form-control", @placeholder = "Mật khẩu",@type="password"})
+                        <br />
+                        <br />
+                        <button type="submit" class="btn-order" id="sign-up-btn">Đăng ký</button>
+                    </form>
+                    
+                    }
+
+                    <div id="username-display"></div>
+                    
+                </div>
+                <ul class="list-footer">
+                    <span class="logo-first">Drip</span>
+                    <span class="logo-last">Cafe</span>
+                    <li><a href="">Liên Hệ</a></li>
+                    <li><a href="">Địa chỉ cửa hàng : 300A, QL1A, An Phú Đông, Q12</a></li>
+                    <li><a href="">Mail : tuananhs2004@gmail.com</a></li>
+                    <li><a href="">Mail :  trantoan01052k4@gmail.com</a></li>
+                </ul>
+                <div class="icons">
+                    <a href="#!">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-snapchat-square"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">&copy; ĐẠI HỌC NGUYỄN TẤT THÀNH</div>
+        </div>
+    </section>
+</main>
+

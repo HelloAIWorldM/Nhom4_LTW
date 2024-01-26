@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DripCofe1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminAccount">
+    <Key>
+      <PropertyRef Name="idAdmin" />
+    </Key>
+    <Property Name="idAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taikhoanAdmin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="passAdmin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="donHang" Relationship="Self.fk_adminaccount_donhang" FromRole="AdminAccount" ToRole="donHang" />
+    <NavigationProperty Name="sanPham" Relationship="Self.fk_sanpham_donhang" FromRole="AdminAccount" ToRole="sanPham" />
+  </EntityType>
+  <EntityType Name="ctDonHang">
+    <Key>
+      <PropertyRef Name="soDH" />
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="soDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="soLuong" Type="Int32" />
+    <Property Name="giaBan" Type="Int32" />
+    <NavigationProperty Name="donHang" Relationship="Self.FK_ctDonHang_donHang" FromRole="ctDonHang" ToRole="donHang" />
+    <NavigationProperty Name="sanPham" Relationship="Self.FK_ctDonHang_sanPham" FromRole="ctDonHang" ToRole="sanPham" />
+  </EntityType>
+  <EntityType Name="donHang">
+    <Key>
+      <PropertyRef Name="soDH" />
+    </Key>
+    <Property Name="soDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="maKH" Type="Int32" Nullable="false" />
+    <Property Name="taiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ngayDat" Type="DateTime" Precision="3" />
+    <Property Name="ngayGH" Type="DateTime" Precision="3" />
+    <Property Name="diaChiGH" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ghiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="trangthai" Type="Int32" />
+    <Property Name="idAdmin" Type="Int32" />
+    <NavigationProperty Name="AdminAccount" Relationship="Self.fk_adminaccount_donhang" FromRole="donHang" ToRole="AdminAccount" />
+    <NavigationProperty Name="ctDonHang" Relationship="Self.FK_ctDonHang_donHang" FromRole="donHang" ToRole="ctDonHang" />
+    <NavigationProperty Name="khachhang" Relationship="Self.FK_donHang_khachhang" FromRole="donHang" ToRole="khachhang" />
+    <NavigationProperty Name="taiKhoanTV" Relationship="Self.FK_donHang_taiKhoanTV" FromRole="donHang" ToRole="taiKhoanTV" />
+  </EntityType>
+  <EntityType Name="khachhang">
+    <Key>
+      <PropertyRef Name="maKH" />
+    </Key>
+    <Property Name="maKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="soDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="donHang" Relationship="Self.FK_donHang_khachhang" FromRole="khachhang" ToRole="donHang" />
+  </EntityType>
+  <EntityType Name="loaiSP">
+    <Key>
+      <PropertyRef Name="maLoai" />
+    </Key>
+    <Property Name="maLoai" Type="Int32" Nullable="false" />
+    <Property Name="loaiHang" Type="String" MaxLength="88" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ghiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="sanPham" Relationship="Self.FK__sanPham__maLoai__47DBAE45" FromRole="loaiSP" ToRole="sanPham" />
+  </EntityType>
+  <EntityType Name="sanPham">
+    <Key>
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="maSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hinhSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="giaBan" Type="Int32" Nullable="false" />
+    <Property Name="calories" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Total" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="percentFat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Saturated" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="percentSaturated" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Cholesterol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="percentCholesterol" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Sodium" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="percentSodium" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Carbohydrates" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="percentCarbohydrates" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Sugars" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Protein" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Caffeine" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="percentCaffeine" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="thanhPhan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="maLoai" Type="Int32" Nullable="false" />
+    <Property Name="percentProtein" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ndTomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idAdmin" Type="Int32" />
+    <NavigationProperty Name="AdminAccount" Relationship="Self.fk_sanpham_donhang" FromRole="sanPham" ToRole="AdminAccount" />
+    <NavigationProperty Name="ctDonHang" Relationship="Self.FK_ctDonHang_sanPham" FromRole="sanPham" ToRole="ctDonHang" />
+    <NavigationProperty Name="loaiSP" Relationship="Self.FK__sanPham__maLoai__47DBAE45" FromRole="sanPham" ToRole="loaiSP" />
+  </EntityType>
+  <EntityType Name="taiKhoanTV">
+    <Key>
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="taiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="matKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="donHang" Relationship="Self.FK_donHang_taiKhoanTV" FromRole="taiKhoanTV" ToRole="donHang" />
+  </EntityType>
+  <Association Name="fk_adminaccount_donhang">
+    <End Role="AdminAccount" Type="Self.AdminAccount" Multiplicity="0..1" />
+    <End Role="donHang" Type="Self.donHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminAccount">
+        <PropertyRef Name="idAdmin" />
+      </Principal>
+      <Dependent Role="donHang">
+        <PropertyRef Name="idAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sanpham_donhang">
+    <End Role="AdminAccount" Type="Self.AdminAccount" Multiplicity="0..1" />
+    <End Role="sanPham" Type="Self.sanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminAccount">
+        <PropertyRef Name="idAdmin" />
+      </Principal>
+      <Dependent Role="sanPham">
+        <PropertyRef Name="idAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctDonHang_donHang">
+    <End Role="donHang" Type="Self.donHang" Multiplicity="1" />
+    <End Role="ctDonHang" Type="Self.ctDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="donHang">
+        <PropertyRef Name="soDH" />
+      </Principal>
+      <Dependent Role="ctDonHang">
+        <PropertyRef Name="soDH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctDonHang_sanPham">
+    <End Role="sanPham" Type="Self.sanPham" Multiplicity="1" />
+    <End Role="ctDonHang" Type="Self.ctDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanPham">
+        <PropertyRef Name="maSP" />
+      </Principal>
+      <Dependent Role="ctDonHang">
+        <PropertyRef Name="maSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_donHang_khachhang">
+    <End Role="khachhang" Type="Self.khachhang" Multiplicity="1" />
+    <End Role="donHang" Type="Self.donHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khachhang">
+        <PropertyRef Name="maKH" />
+      </Principal>
+      <Dependent Role="donHang">
+        <PropertyRef Name="maKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_donHang_taiKhoanTV">
+    <End Role="taiKhoanTV" Type="Self.taiKhoanTV" Multiplicity="1" />
+    <End Role="donHang" Type="Self.donHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taiKhoanTV">
+        <PropertyRef Name="taiKhoan" />
+      </Principal>
+      <Dependent Role="donHang">
+        <PropertyRef Name="taiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sanPham__maLoai__47DBAE45">
+    <End Role="loaiSP" Type="Self.loaiSP" Multiplicity="1" />
+    <End Role="sanPham" Type="Self.sanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaiSP">
+        <PropertyRef Name="maLoai" />
+      </Principal>
+      <Dependent Role="sanPham">
+        <PropertyRef Name="maLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DripCofe1Entities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminAccount" EntityType="Self.AdminAccount" />
+    <EntitySet Name="ctDonHang" EntityType="Self.ctDonHang" />
+    <EntitySet Name="donHang" EntityType="Self.donHang" />
+    <EntitySet Name="khachhang" EntityType="Self.khachhang" />
+    <EntitySet Name="loaiSP" EntityType="Self.loaiSP" />
+    <EntitySet Name="sanPham" EntityType="Self.sanPham" />
+    <EntitySet Name="taiKhoanTV" EntityType="Self.taiKhoanTV" />
+    <AssociationSet Name="fk_adminaccount_donhang" Association="Self.fk_adminaccount_donhang">
+      <End Role="AdminAccount" EntitySet="AdminAccount" />
+      <End Role="donHang" EntitySet="donHang" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sanpham_donhang" Association="Self.fk_sanpham_donhang">
+      <End Role="AdminAccount" EntitySet="AdminAccount" />
+      <End Role="sanPham" EntitySet="sanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctDonHang_donHang" Association="Self.FK_ctDonHang_donHang">
+      <End Role="donHang" EntitySet="donHang" />
+      <End Role="ctDonHang" EntitySet="ctDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctDonHang_sanPham" Association="Self.FK_ctDonHang_sanPham">
+      <End Role="sanPham" EntitySet="sanPham" />
+      <End Role="ctDonHang" EntitySet="ctDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_donHang_khachhang" Association="Self.FK_donHang_khachhang">
+      <End Role="khachhang" EntitySet="khachhang" />
+      <End Role="donHang" EntitySet="donHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_donHang_taiKhoanTV" Association="Self.FK_donHang_taiKhoanTV">
+      <End Role="taiKhoanTV" EntitySet="taiKhoanTV" />
+      <End Role="donHang" EntitySet="donHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sanPham__maLoai__47DBAE45" Association="Self.FK__sanPham__maLoai__47DBAE45">
+      <End Role="loaiSP" EntitySet="loaiSP" />
+      <End Role="sanPham" EntitySet="sanPham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

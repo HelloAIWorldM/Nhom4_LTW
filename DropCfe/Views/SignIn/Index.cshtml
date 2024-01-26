@@ -1,0 +1,88 @@
+﻿@model DropCfe.Models.taiKhoanTV
+@using DropCfe.Models
+@{
+    ViewBag.Title = "Index";
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+<main>
+    <section class="sign-in">
+        <div class="pic-area">
+            <div class="pic-area-text">
+                <div id="login-box">
+                    @if (Session["user"] == null)
+                    {
+                        using (Html.BeginForm("Index", "SignIn", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <form id="login-form" name="login-form" action="index.html" method="post">
+                                <label>Tên đăng nhập: </label> <br />
+                                @*
+                    <input type="text" name="userid" id="userid" pattern="[a-zA-Z0-9]+" required />
+                                *@
+
+                                @Html.TextBoxFor(a => a.taiKhoan, new { @class = "form-control", @placeholder = "Tài Khoản" })
+                                <!-- minlength="10" does not work probably bc you need to use the submit button--><br />
+                                <label> Mật khẩu: </label> <br />
+                                @Html.TextBoxFor(a => a.matKhau, new { @class = "form-control pasword2", @placeholder = "Mật Khẩu",@type="password" })
+                                <!--
+                    <input type="password" name="pswrd" id="pswrd" /><br />
+                -->
+                                <br />
+                                <br />
+                                <button type="submit" class="btn-order" id="login-btn">Đăng nhập</button>
+                            </form>
+                        }
+                    }
+                    else
+                    {
+                            <div id="username-display">
+                                Currently logged in as:
+                                <br />
+                                <i class="fa-solid fa-user"></i> @Session["user"]
+                            </div>
+                            <div class="thong-bao"></div>
+                        using (Html.BeginForm("SignOut", "SignOut", FormMethod.Post))
+                        {
+                            <button type="submit" class="btn-order" id="login-btn">Sign Out</button>
+                        }
+                        
+                    }
+
+
+
+
+                </div>
+                <ul class="list-footer">
+                    <span class="logo-first">Drip</span>
+                    <span class="logo-last">Cafe</span>
+                    <li><a href="">Liên Hệ</a></li>
+                    <li><a href="">Địa chỉ cửa hàng : 300A, QL1A, An Phú Đông, Q12</a></li>
+                    <li><a href="">Mail : tuananhs2004@gmail.com</a></li>
+                    <li><a href="">Mail : trantoan01052k4@gmail.com</a></li>
+                </ul>
+                <div class="icons">
+                    <a href="#!">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-snapchat-square"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">&copy; ĐẠI HỌC NGUYỄN TẤT THÀNH</div>
+        </div>
+    </section>
+</main>
+<script src="~/Assets/js/index.js"></script>

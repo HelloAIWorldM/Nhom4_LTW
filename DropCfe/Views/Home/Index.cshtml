@@ -1,0 +1,77 @@
+﻿@using DropCfe.Models
+@{
+    ViewBag.Title = "Index";
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+<main>
+    <section class="home">
+        <div class="pic-area">
+            <div class="pic-area-text">
+                <h2>Welcome to</h2>
+                <h1 class="home__name">
+                    <span class="logo-first">Drip</span>
+                    <span class="logo-last">Cafe</span>
+                </h1>
+                <h3> Nơi có cafe và thoải mái cùng nhau </h3>
+                <a href="@Url.Action("Index","Menu",new { @area =""})">
+                    <button class="btn-order">Order ngay!</button>
+                </a>
+            </div>
+        </div>
+        <div class="main-area">
+            <div class="section-area">
+                <div class="section-A">
+                    <div class="box-text">
+                        <h1>Saigon Coffee Roastery</h1>
+                        <p>
+                            Cà phê ở đây là sự kết hợp giữa chất lượng hạt xanh từ Farm Đà Lạt và khắp mọi nơi trên thế giới như Ethiopia, Kenya, El Salvador... và nghệ thuật rang chuyên nghiệp cùng với máy móc hiện đại, qua đôi bàn tay điêu luyện của các Barista sẽ mang đến cho bạn những ly cafe thú vị!
+
+                            Menu của quán rất đa dạng đến từ những hạt Arabica chất lượng được rang light hoặc medium, áp dụng phương pháp pha pour over, cold drip, hoặc espresso… tùy vào sở thích của khách hàng.
+
+                            Ngoài việc phục vụ khách hàng tại quán, Saigon Coffee Roastery còn cung cấp các gói cà phê nhân xanh, cà phê rang (light/ light medium/ medium…) cho các khách hàng thích pha tại nhà hoặc các đại lý phân phối. Bạn cũng sẽ dễ dàng tìm được các dụng cụ chế biến, lọc cà phê, đồ dùng trang trí cho những ai yêu cà phê.
+                        </p>
+                    </div>
+                    <div class="box-img">
+                        <img src="~/Assets/img/who-we-are.jpg" alt="Saigon Coffee Roastery" />
+                    </div>
+                </div>
+            </div>
+            <div class="section-area">
+                <div class="section-B">
+                    <div class="box-text">
+                        <h1> Amber Specialty Coffee  </h1>
+                        <p>
+                            Amber được biết đến là nhà phân phối cà phê nhân xanh (green beans) chuyên phục vụ, cung cấp cho specialty coffee hàng đầu tại Việt Nam. Ngoài ra, Amber còn là nhà rang nổi tiếng, phục vụ cho khách hàng mua lẻ và sỉ.
+
+                            Bạn có thể dàng đến với Amber để tận hưởng thử hương vị cà phê đặc sản đến từ các vùng Ethiopia, Kenya, Columbia,... Với đủ hương vị như trái cây nhiệt đới, trái cây khô, vị chua axit, vị thanh nhẹ, hậu ngọt,...
+
+                            Hoặc nếu thích bạn có thể truy cập website, các sàn TMĐT (Tiki, Shopee, Lazada) để đặt mua hàng cà phê nhân xanh, cà phê rang, dụng cụ phục vụ pha pour over/hand brew đến từ thương hiệu Brewista.
+                        </p>
+                    </div>
+                    <div class="box-img">
+                        <img src="~/Assets/img/services.jpg" alt="Services" />
+                    </div>
+                </div>
+            </div>
+            <div class="section-area">
+                <div class="section-C">
+                    <div class="box-text">
+                        <h1>Blue in Green Coffee - specialty coffee saigon</h1>
+                        <p>
+                            Blue in Green Coffee (BIG) là một trong những nhà rang đi đầu trong lĩnh vực specialty coffee ở Việt Nam. BIG là nơi cà phê được rang xay một cách tận tâm bởi nhân viên của quán, với hạt cà phê được tìm kiếm và chọn lọc thủ công từ nhiều nước trên thế giới. Blue in Green Coffee chuyên phục vụ specialty coffee, cũng như bán sỉ và lẻ hạt cà phê được đóng túi sẵn rất đa dạng và chất lượng.
+                        </p>
+                    </div>
+                    <div class="box-img">
+                        <img src="~/Assets/img/menu.jpg" alt="Menu" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

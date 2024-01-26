@@ -1,0 +1,62 @@
+﻿@using DropCfe.Models
+@{
+    ViewBag.Title = "Index";
+    GioHang x = Session["giohang"] as GioHang;
+    GioHang gh = ViewData["SP"] as GioHang;
+    if (gh == null)
+    {
+        gh = new GioHang();
+        ViewData["SP"] = gh;
+    }
+}
+
+
+<main>
+    <section class="contact">
+        <div class="pic-area">
+            <div class="pic-area-text">
+                <h2>Phương pháp để</h2>
+                <h1 class="home__name">
+                    Liên lạc với chúng tôi
+                </h1>
+                <h3>Liên lạc qua email, số điện thoại và địa chỉ của cửa hàng</h3>
+                <div class="sections">
+                    <div class="sections-section">
+                        <i class="fas fa-envelope"></i> Email
+                        <p>quocthai2k4@gmail.com</p>
+                    </div>
+                    <div class="sections-section">
+                        <i class="fas fa-mobile-alt"></i> SDT
+                        <p>0393050809</p>
+                    </div>
+                    <div class="sections-section">
+                        <i class="fas fa-map-marker-alt"></i> Địa chỉ
+                        <p>300A QL1A An Phú Đông, quận 12, TP.HCM</p>
+                    </div>
+                </div>
+                <ul class="list-footer">
+                    <span class="logo-first">Drip</span>
+                    <span class="logo-last">Cafe</span>
+                    <li><a href="">Liên Hệ</a></li>
+                    <li><a href="">Địa chỉ cửa hàng : 300A, QL1A, An Phú Đông, Q12</a></li>
+                </ul>
+                <div class="icons">
+                    <a href="#!">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fab fa-snapchat-square"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">&copy; ĐẠI HỌC NGUYỄN TẤT THÀNH</div>
+        </div>
+    </section>
+</main>
+

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DripCofe1ModelStoreContainer" CdmEntityContainer="DripCofe1Entities">
+    <EntitySetMapping Name="ctDonHang">
+      <EntityTypeMapping TypeName="DripCofe1Model.ctDonHang">
+        <MappingFragment StoreEntitySet="ctDonHang">
+          <ScalarProperty Name="soDH" ColumnName="soDH" />
+          <ScalarProperty Name="maSP" ColumnName="maSP" />
+          <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+          <ScalarProperty Name="giaBan" ColumnName="giaBan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donHang">
+      <EntityTypeMapping TypeName="DripCofe1Model.donHang">
+        <MappingFragment StoreEntitySet="donHang">
+          <ScalarProperty Name="soDH" ColumnName="soDH" />
+          <ScalarProperty Name="maKH" ColumnName="maKH" />
+          <ScalarProperty Name="taiKhoan" ColumnName="taiKhoan" />
+          <ScalarProperty Name="ngayDat" ColumnName="ngayDat" />
+          <ScalarProperty Name="ngayGH" ColumnName="ngayGH" />
+          <ScalarProperty Name="diaChiGH" ColumnName="diaChiGH" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+          <ScalarProperty Name="trangthai" ColumnName="trangthai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khachhang">
+      <EntityTypeMapping TypeName="DripCofe1Model.khachhang">
+        <MappingFragment StoreEntitySet="khachhang">
+          <ScalarProperty Name="maKH" ColumnName="maKH" />
+          <ScalarProperty Name="tenKH" ColumnName="tenKH" />
+          <ScalarProperty Name="soDT" ColumnName="soDT" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loaiSP">
+      <EntityTypeMapping TypeName="DripCofe1Model.loaiSP">
+        <MappingFragment StoreEntitySet="loaiSP">
+          <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+          <ScalarProperty Name="loaiHang" ColumnName="loaiHang" />
+          <ScalarProperty Name="ghiChu" ColumnName="ghiChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sanPham">
+      <EntityTypeMapping TypeName="DripCofe1Model.sanPham">
+        <MappingFragment StoreEntitySet="sanPham">
+          <ScalarProperty Name="maSP" ColumnName="maSP" />
+          <ScalarProperty Name="tenSP" ColumnName="tenSP" />
+          <ScalarProperty Name="hinhSP" ColumnName="hinhSP" />
+          <ScalarProperty Name="giaBan" ColumnName="giaBan" />
+          <ScalarProperty Name="calories" ColumnName="calories" />
+          <ScalarProperty Name="fat" ColumnName="fat" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="percentFat" ColumnName="percentFat" />
+          <ScalarProperty Name="Saturated" ColumnName="Saturated" />
+          <ScalarProperty Name="percentSaturated" ColumnName="percentSaturated" />
+          <ScalarProperty Name="Cholesterol" ColumnName="Cholesterol" />
+          <ScalarProperty Name="percentCholesterol" ColumnName="percentCholesterol" />
+          <ScalarProperty Name="Sodium" ColumnName="Sodium" />
+          <ScalarProperty Name="percentSodium" ColumnName="percentSodium" />
+          <ScalarProperty Name="Carbohydrates" ColumnName="Carbohydrates" />
+          <ScalarProperty Name="percentCarbohydrates" ColumnName="percentCarbohydrates" />
+          <ScalarProperty Name="Sugars" ColumnName="Sugars" />
+          <ScalarProperty Name="Protein" ColumnName="Protein" />
+          <ScalarProperty Name="Caffeine" ColumnName="Caffeine" />
+          <ScalarProperty Name="percentCaffeine" ColumnName="percentCaffeine" />
+          <ScalarProperty Name="thanhPhan" ColumnName="thanhPhan" />
+          <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+          <ScalarProperty Name="percentProtein" ColumnName="percentProtein" />
+          <ScalarProperty Name="ndTomTat" ColumnName="ndTomTat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taiKhoanTV">
+      <EntityTypeMapping TypeName="DripCofe1Model.taiKhoanTV">
+        <MappingFragment StoreEntitySet="taiKhoanTV">
+          <ScalarProperty Name="taiKhoan" ColumnName="taiKhoan" />
+          <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
